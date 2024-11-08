@@ -12,6 +12,20 @@ jobs:
             run: 
                 working-directory: ./src
         steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-dotnet@v1
+              with: 
+                dotnet-version: '8.0.x'
+            - run: dotnet restore
+            - run: dotnet build --no-restore --configuration Debug
+            - run: dotnet test --no-build --configuration Debug
+            - name: Publish test report 
+              uses: peaceiris/actions-gh-pages@v3 
+              if: always() 
+              with:
+                github_token: ${{ secrets.GITHUB_TOKEN }} 
+                publish_branch: gh-pages 
+                publish_dir: allure-history
             - name: Get Allure history 
               uses: actions/checkout@v4 
               if: always() 
@@ -25,17 +39,3 @@ jobs:
               with: 
                 allure_history: allure-history 
                 allure_results: src/allure-results
-            - name: Publish test report 
-              uses: peaceiris/actions-gh-pages@v3 
-              if: always() 
-              with:
-                github_token: ${{ secrets.GITHUB_TOKEN }} 
-                publish_branch: gh-pages 
-                publish_dir: allure-history
-            - uses: actions/checkout@v4
-            - uses: actions/setup-dotnet@v1
-              with: 
-                dotnet-version: '8.0.x'
-            - run: dotnet restore
-            - run: dotnet build --no-restore --configuration Debug
-            - run: dotnet test --no-build --configuration Debug
