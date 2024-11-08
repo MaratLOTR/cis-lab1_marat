@@ -12,13 +12,13 @@ jobs:
             run: 
                 working-directory: ./src
         steps:
-            # - name: Get Allure history 
-            #   uses: actions/checkout@v4 
-            #   if: always() 
-            #   continue-on-error: true 
-            #   with:
-            #     ref: gh-pages 
-            #     path: gh-pages
+            - name: Get Allure history 
+              uses: actions/checkout@v4 
+              if: always() 
+              continue-on-error: true 
+              with:
+                ref: gh-pages 
+                path: gh-pages
             - name: Generate Allure Report 
               uses: simple-elf/allure-report-action@v1.7 
               if: always() 
