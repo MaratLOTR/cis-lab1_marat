@@ -1,0 +1,2 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Fri Nov 08 07:08:02 GMT 2024","Fri Nov 08 07:08:02 GMT 2024","66","","","","BackendApp.UnitTests.WeatherForecastControllerTest","BackendApp.UnitTests.WeatherForecastControllerTest.Get_ReturnsWeatherForecast","BackendApp.UnitTests.WeatherForecastControllerTest.Get_ReturnsWeatherForecast",""
