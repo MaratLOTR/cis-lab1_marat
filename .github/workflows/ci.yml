@@ -1,0 +1,21 @@
+on: 
+    workflow_dispatch: 
+    push: 
+        branches: ["master"] 
+    pull_request: 
+        branches: ["master"]
+
+jobs: 
+    ci: 
+        runs-on: ubuntu-latest 
+        defaults: 
+            run: 
+                working-directory: ./src
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-dotnet@v1
+              with: 
+                dotnet-version: '8.0.x'
+            - run: dotnet restore
+            - run: dotnet build --no-restore --configuration Debug
+            - run: dotnet test --no-build --configuration Debug
